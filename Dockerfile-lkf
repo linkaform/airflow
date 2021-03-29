@@ -1,0 +1,26 @@
+# Stage 1: The development stage
+
+FROM apache/airflow:master-python3.8  AS develop
+
+ARG AIRFLOW_UID="50000"
+ARG AIRFLOW_GID="50000"
+
+USER root 
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+           wget 
+
+USER ${AIRFLOW_UID}
+
+RUN wget  https://f001.backblazeb2.com/file/lkf-resources/linkaform_api-3.0.tar.gz
+RUN pip3 install linkaform_api-3.0.tar.gz
+
+####
+
+FROM develop as production
+
+RUN echo $(pwd)
+RUN echo $(ls /opt/airflow/)
+COPY  --chown=airflow:airflow ./plugins /opt/airflow/pluginstest/
+

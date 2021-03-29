@@ -1,0 +1,49 @@
+#!/bin/bash
+
+set -e
+set -u
+#set -o pipefail
+
+#echo "" >.env
+
+AIRFLOW_SERVICES='airflow_airflow'
+
+while getopts 'f:' opt; do
+  case "$opt" in
+    f)
+     #flush logs
+    AIRFLOW_SERVICES='airflow_'
+    echo $OPTARG
+    ;;
+    ?)
+      _usage
+      ;;
+  esac
+done
+
+echo "aaargs $#"
+echo "optin $OPTIND"
+
+shift "$(($OPTIND -1))"
+
+echo "optin $OPTIND"
+echo "args $#"
+Command=""
+if [[ $# -gt 0 ]]; then
+  Command=$1
+
+fi
+
+echo "Command : $Command"
+echo "Airflow services : $AIRFLOW_SERVICES"
+
+
+case "$Command" in
+
+
+  stop)
+    echo "Stoping Airflow Basic services"
+    docker stop $(docker ps | grep $AIRFLOW_SERVICES  |  awk {'print $1'})    
+  ;;
+
+esac
