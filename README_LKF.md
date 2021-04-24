@@ -36,6 +36,49 @@ Para correr Apache Airflow simplemente corre
 
 Esto arrancara todos los contenedores necesarios para correr apache airflow en tu computadora.
 
-En carpeta de dags, encontraras los dags de los distintos clientes, par motivos practicos, esto esta en un git separado
+En carpeta de dags, encontraras los dags de los distintos clientes, para motivos practicos, esto esta en un git separado
 
+# Start the service
 
+```
+docker-compose up -d
+```
+
+# Stop everything
+
+```
+ docker stop $(docker ps | grep airflow_  |  awk {'print $1'}) && docker rm $(docker ps | grep airflow_  |  awk {'print $1'})
+ ```
+
+ 
+---
+
+# Build LinkaFrom
+
+```
+docker-compose -f docker-prod.yml build airflow-webserver
+```
+
+hacer push 
+```
+docker push linkaform/airflow:latest
+```
+
+acutalizar preprod
+
+conectarse al airflow de preprod
+```
+ssh develop.linkaform.com -p 2209
+```
+
+conectarse al airflow de produccion
+```
+ssh airflow.linkaform.com
+```
+
+hacer el deploy en produccion y dev
+```
+cd /srv/airflow
+docker stack deploy -c docker-stack.yml af --with-registry-auth
+
+```

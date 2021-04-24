@@ -42,6 +42,7 @@ x-airflow-common:
   &airflow-common
   image: ${AIRFLOW_IMAGE_NAME}/airflow:2.0.1
   #image: linkaform/airflow:2.0.1
+  hostname: airflow_qa
   build: 
     context: ./
     dockerfile: Dockerfile-lkf

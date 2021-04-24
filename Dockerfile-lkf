@@ -20,7 +20,5 @@ RUN pip3 install linkaform_api-3.0.tar.gz
 
 FROM develop as production
 
-RUN echo $(pwd)
-RUN echo $(ls /opt/airflow/)
-COPY  --chown=airflow:airflow ./plugins /opt/airflow/pluginstest/
-
+COPY  --chown=airflow:airflow ./dags/dags_lkf/ /opt/airflow/dags/dags_lkf/
+COPY  --chown=airflow:airflow ./plugins/ /opt/airflow/plugins/

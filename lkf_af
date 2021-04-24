@@ -40,10 +40,20 @@ echo "Airflow services : $AIRFLOW_SERVICES"
 
 case "$Command" in
 
+  start)
+    echo "Starting Airflow Service"
+    docker-compose up -d
+  ;;
 
   stop)
     echo "Stoping Airflow Basic services"
     docker stop $(docker ps | grep $AIRFLOW_SERVICES  |  awk {'print $1'})    
+  ;;
+
+  build)
+    echo "building airflow"
+    docker-compose -f docker-prod.yml build airflow-webserver
+    docker push linkaform/airflow:latest
   ;;
 
 esac

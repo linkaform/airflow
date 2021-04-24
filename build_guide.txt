@@ -2,7 +2,7 @@
 ./breeze build-image   \
 --production-image -p 3.8   \
 --installation-method .   \
---additional-python-deps twilio
+--additional-python-deps twilio \
 --disable-mysql-client-installation -v
 
 docker-compose build airflow-webserver
