@@ -7,13 +7,13 @@ Para instalar breeze que lo vamos a usar para hacer build de airflow de ser nece
 ./breeze
 '''
 
-Luego corres 
+Luego corres
 
 '''
 ./breeze setup-autocomplete
 '''
 
-Para configurar la base de datos inicial arrancar con 
+Para configurar la base de datos inicial arrancar con
 
 '''
  ./breeze start-airflow -b postgres
@@ -22,7 +22,7 @@ Para configurar la base de datos inicial arrancar con
 Esto va a crear una base de datos inicial para que el airflow funcione lo que hice fue agarar ese volumen y apuntarlo al nuevo contenedor
 
 Pudieramos hacer una base de datos base y con esa siempre arrancar airflow con user y passwords establecidos. Guardar un tar y ejecutar desde ahi
- 
+
 
 Esto te dara la capacidad de usar el autocomplete de breeze
 
@@ -50,16 +50,18 @@ docker-compose up -d
  docker stop $(docker ps | grep airflow_  |  awk {'print $1'}) && docker rm $(docker ps | grep airflow_  |  awk {'print $1'})
  ```
 
- 
+
 ---
 
 # Build LinkaFrom
 
 ```
 docker-compose -f docker-prod.yml build airflow-webserver
+#para probar local hacer tag
+docker tag linkaform/airflow:latest linkaform/airflow:2.0.1
 ```
 
-hacer push 
+hacer push
 ```
 docker push linkaform/airflow:latest
 ```

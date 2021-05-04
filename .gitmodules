@@ -19,9 +19,6 @@
 [submodule ".github/actions/label-when-approved-action"]
 	path = .github/actions/label-when-approved-action
 	url = https://github.com/TobKed/label-when-approved-action
-[submodule "dags_lkf"]
-	path = dags_lkf
-	url = git@gitlab.linkaform.com:develop/dags_lkf.git
 [submodule "dags/dags_lkf"]
 	path = dags/dags_lkf
 	url = git@gitlab.linkaform.com:develop/dags_lkf.git
