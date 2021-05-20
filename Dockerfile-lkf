@@ -6,20 +6,25 @@ ARG AIRFLOW_UID="50000"
 ARG AIRFLOW_GID="50000"
 
 USER root
+RUN  chown 777 -R  /usr/local/lib/python3.8/
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-           wget
+           wget \
+           vim
 
 USER ${AIRFLOW_UID}
 
+COPY  --chown=airflow:airflow ./airflow/config_templates/default_test.cfg  /opt/airflow/airflow.cfg
 RUN echo yess
 RUN wget  https://f001.backblazeb2.com/file/lkf-resources/linkaform_api-3.0.tar.gz
 RUN pip3 install linkaform_api-3.0.tar.gz
-
+USER root
 ####
 
 FROM develop as production
+
+COPY  --chown=airflow:airflow ./airflow/config_templates/default_airflow.cfg /opt/airflow/airflow.cfg
 
 COPY  --chown=airflow:airflow ./dags/dags_lkf/ /opt/airflow/dags/dags_lkf/
 COPY  --chown=airflow:airflow ./plugins/ /opt/airflow/plugins/

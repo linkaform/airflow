@@ -53,8 +53,13 @@ docker-compose up -d
 
 ---
 
-# Build LinkaFrom
 
+# Build Linkaform Local
+```
+docker-compose -f docker-compose.yml build airflow-webserver
+```
+
+# Build LinkaFrom
 ```
 docker-compose -f docker-prod.yml build airflow-webserver
 #para probar local hacer tag

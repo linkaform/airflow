@@ -26,7 +26,7 @@
 # AIRFLOW_IMAGE_NAME         - Docker image name used to run Airflow.
 #                              Default: apache/airflow:master-python3.8
 # AIRFLOW_UID                - User ID in Airflow containers
-#                              Default: 50000
+#                              Defauoptlt: 50000
 # AIRFLOW_GID                - Group ID in Airflow containers
 #                              Default: 50000
 # _AIRFLOW_WWW_USER_USERNAME - Username for the administrator account.
@@ -43,7 +43,7 @@ x-airflow-common:
   image: ${AIRFLOW_IMAGE_NAME}/airflow:2.0.1
   #image: linkaform/airflow:2.0.1
   hostname: airflow_qa
-  build: 
+  build:
     context: ./
     dockerfile: Dockerfile-lkf
     target: develop
@@ -57,6 +57,8 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
   volumes:
+    - ./airflow.cfg:/usr/local/airflow/airflow.cfg
+    - ./airflow.cfg:/opt/airflow/airflow.cfg
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
