@@ -15,9 +15,24 @@ Luego corres
 
 Para configurar la base de datos inicial arrancar con
 
+
+correr el docker y dentro del docker corres
 '''
- ./breeze start-airflow -b postgres
+airflow db init
+ airflow users create -p airflow -r Admin -u airflow -e josepato@linkaform.com -f JosePato -l Villarreal 
+
 '''
+
+./breeze --python 3.8 --backend postgres --db-reset --github-image-id v2-0-stable --build-cache-local
+
+--installation-method . --disable-pypi-when-building --build-cache-local
+./breeze --db-reset
+--production-image
+
+adentro de airflow
+./pytest test/test_core.py
+
+
 
 Esto va a crear una base de datos inicial para que el airflow funcione lo que hice fue agarar ese volumen y apuntarlo al nuevo contenedor
 

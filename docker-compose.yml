@@ -31,7 +31,7 @@
 #                              Default: 50000
 # _AIRFLOW_WWW_USER_USERNAME - Username for the administrator account.
 #                              Default: airflow
-# _AIRFLOW_WWW_USER_PASSWORD - Password for the administrator account.
+# _AImejor deja lo pruebo... o es mas ponemos ese en preprodRFLOW_WWW_USER_PASSWORD - Password for the administrator account.
 #                              Default: airflow
 #
 # Feel free to modify this file to suit your needs.
@@ -57,8 +57,8 @@ x-airflow-common:
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
   volumes:
-    - ./airflow.cfg:/usr/local/airflow/airflow.cfg
-    - ./airflow.cfg:/opt/airflow/airflow.cfg
+    #- ./airflow.cfg:/usr/local/airflow/airflow.cfg
+    - ./airflow_localsettings.cfg:/opt/airflow/airflow.cfg
     - ./dags:/opt/airflow/dags
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
